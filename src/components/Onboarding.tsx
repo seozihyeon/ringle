@@ -120,10 +120,10 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                         : 'border-transparent bg-[#F8F9FB] hover:bg-gray-100'
                     }`}
                   >
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
+                    <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${
                       profile.domain === item.id ? 'bg-[#5D5FEF] text-white' : 'bg-white text-gray-400'
                     }`}>
-                      <item.icon size={24} />
+                      <item.icon size={20} />
                     </div>
                     <span className={`font-bold text-xs ${profile.domain === item.id ? 'text-[#5D5FEF]' : 'text-gray-900'}`}>
                       {item.desc}
