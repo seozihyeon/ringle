@@ -1,0 +1,7 @@
+{
+  "name": "Remix: Ringle AI Tutor Dashboard",
+  "description": "MVP dashboard for Ringle AI Tutor, focusing on encouraging users to start speaking and naturally consume AI tutor features.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
