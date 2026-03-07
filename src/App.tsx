@@ -223,21 +223,28 @@ export default function App() {
     ];
 
     const createUnits = (titles: string[], startId: number, completedUpTo: number, activeId?: number) => 
-      titles.map((title, index) => ({
-        id: startId + index,
-        title: title,
-        completed: ((startId + index) <= completedUpTo) && ((startId + index) !== activeId),
-        active: (activeId ? (startId + index) === activeId : false),
-        progress: (activeId && (startId + index) === activeId) ? 40 : (((startId + index) <= completedUpTo && (startId + index) !== activeId) ? 100 : 0),
-        items: [
-          { title: (startId + index) === 6 ? '비용 구조 분석하기 학습' : `${title} 심화 학습`, type: '기초학습', time: (startId + index) === 6 ? '10분 소요' : '3분 소요', done: (startId + index) <= 5, icon: <CheckCircle2 size={16} /> },
-          { title: '실전 연습', type: '롤플레잉', time: (startId + index) === 6 ? '8분 소요' : '5분 소요', done: (startId + index) <= 5, icon: <Flame size={16} />, active: (startId + index) === 6 },
-          { title: (startId + index) === 6 ? '[짧은 지문] 시장조사 설계하기' : '[짧은 지문] 좋아하는 일 vs. 잘하는 일', type: '디스커션', time: (startId + index) === 6 ? '12분 소요' : '10분 소요', done: false, icon: <MessageCircle size={16} /> },
-        ]
-      }));
+      titles.map((title, index) => {
+        const id = startId + index;
+        const isActive = activeId ? id === activeId : false;
+        const isCompleted = id <= completedUpTo && id !== activeId;
+        const progress = isActive ? 40 : (isCompleted ? 100 : 0);
+
+        return {
+          id,
+          title: title,
+          completed: isCompleted,
+          active: isActive,
+          progress,
+          items: [
+            { title: id === 6 ? '비용 구조 분석하기 학습' : `${title} 심화 학습`, type: '기초학습', time: id === 6 ? '10분 소요' : '3분 소요', done: isCompleted, icon: <CheckCircle2 size={16} /> },
+            { title: '실전 연습', type: '롤플레잉', time: id === 6 ? '8분 소요' : '5분 소요', done: isCompleted, icon: <Flame size={16} />, active: isActive },
+            { title: id === 6 ? '[짧은 지문] 시장조사 설계하기' : '[짧은 지문] 좋아하는 일 vs. 잘하는 일', type: '디스커션', time: id === 6 ? '12분 소요' : '10분 소요', done: false, icon: <MessageCircle size={16} /> },
+          ]
+        };
+      });
 
     const tracks = curriculum?.tracks || [
-      { name: '마케팅', units: createUnits(marketingTitles, 1, 3, 4) },
+      { name: '마케팅', units: createUnits(marketingTitles, 1, 1, 2) },
       { name: '상품기획', units: createUnits(productTitles, marketingTitles.length + 1, 5, 6) }
     ];
 
