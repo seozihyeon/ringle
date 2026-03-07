@@ -222,13 +222,13 @@ export default function App() {
       '수익 구조 개요', '비용구조', '손익분기점', '주요 파트너십 개발'
     ];
 
-    const createUnits = (titles: string[], startId: number, isCompletedOffset: number) => 
+    const createUnits = (titles: string[], startId: number, completedUpTo: number, activeId?: number) => 
       titles.map((title, index) => ({
         id: startId + index,
         title: title,
-        completed: (startId + index) <= 5,
-        active: (startId + index) === 6,
-        progress: (startId + index) === 6 ? 40 : ((startId + index) <= 5 ? 100 : 0),
+        completed: ((startId + index) <= completedUpTo) && ((startId + index) !== activeId),
+        active: (activeId ? (startId + index) === activeId : false),
+        progress: (activeId && (startId + index) === activeId) ? 40 : (((startId + index) <= completedUpTo && (startId + index) !== activeId) ? 100 : 0),
         items: [
           { title: (startId + index) === 6 ? '비용 구조 분석하기 학습' : `${title} 심화 학습`, type: '기초학습', time: (startId + index) === 6 ? '10분 소요' : '3분 소요', done: (startId + index) <= 5, icon: <CheckCircle2 size={16} /> },
           { title: '실전 연습', type: '롤플레잉', time: (startId + index) === 6 ? '8분 소요' : '5분 소요', done: (startId + index) <= 5, icon: <Flame size={16} />, active: (startId + index) === 6 },
@@ -237,8 +237,8 @@ export default function App() {
       }));
 
     const tracks = curriculum?.tracks || [
-      { name: '마케팅', units: createUnits(marketingTitles, 1, 5) },
-      { name: '상품기획', units: createUnits(productTitles, marketingTitles.length + 1, 5) }
+      { name: '마케팅', units: createUnits(marketingTitles, 1, 3, 4) },
+      { name: '상품기획', units: createUnits(productTitles, marketingTitles.length + 1, 5, 6) }
     ];
 
     const allUnits = tracks.flatMap(t => t.units);
