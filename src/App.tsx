@@ -215,7 +215,7 @@ export default function App() {
   // --- Home Tab Content ---
   const renderHome = () => {
     const marketingTitles = [
-      '프로토타입 개발', '제품 개요 정리', '아이디어 브레인스토밍', '컨셉 개선'
+      '프로토타입 개발', '제품 개요', '아이디어 브레인스토밍', '컨셉 개선'
     ];
     
     const productTitles = [
