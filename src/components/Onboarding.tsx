@@ -435,9 +435,9 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                   <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Level</p>
                   <p className="text-xs font-bold text-gray-900">{profile.baseline?.split(' ')[0]}</p>
                 </div>
-                <div className="bg-[#F8F9FB] p-4 rounded-[20px] text-center space-y-1">
-                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Correction</p>
-                  <p className="text-xs font-bold text-gray-900">{profile.style === 'Precision' ? 'High' : 'Normal'}</p>
+                <div className="bg-[#F8F9FB] p-4 rounded-[20px] flex flex-col items-center justify-center text-center gap-1 overflow-hidden">
+                  <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest truncate">Correction</p>
+                  <p className="text-xs font-bold text-gray-900 truncate">{profile.style === 'Precision' ? 'High' : 'Normal'}</p>
                 </div>
                 <div className="bg-[#F8F9FB] p-4 rounded-[20px] text-center space-y-1">
                   <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest">Sessions</p>
